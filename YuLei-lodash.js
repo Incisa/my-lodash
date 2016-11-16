@@ -5,15 +5,14 @@ var YuLei = {
 		var tmp = []
 
 		for (var i = 0; i < arr.length; i++) {
-			tmp.push(arr[i])
-			if (i % n == (n - 1)) {
+			var m = i % n
+			temp.push(arr[i])
+			if (m == n - 1 || i == arr.length - 1) {
 				result.push(tmp)
+				m = 0
 				tmp = []
 			}
 		}
-
-		result.push(tmp)
-
 		return result
 	},
 
