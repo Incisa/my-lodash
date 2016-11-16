@@ -57,4 +57,25 @@ var YuLei = {
 	},
 
 
+	dropRight: function(arr, value) {
+		for (i = 0; i < value; i++) {
+			var result = arr.pop(0)
+		}
+		return arr
+	},
+
+
+	fill: function(arr, value, start, end) {
+		if (!start) {
+			start = 0
+		}
+		if (!end) {
+			end = arr.length
+		}
+		arr.splice(start, end - start)
+		for (var i = 0; i < end - start; i++) {
+			arr.splice(start + i, 0, value)
+		}
+		return arr
+	},
 }
