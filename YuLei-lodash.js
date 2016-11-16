@@ -78,4 +78,21 @@ var YuLei = {
 		}
 		return arr
 	},
+
+
+	flatten: function(arr) {
+		var result = []
+		for (var i = 0; i < arr.length; i++) {
+			if (typeof arr[i] == 'object') {
+				for (var j = 0; j < arr[i].length; j++) {
+					result.push(arr[i][j])
+				}
+			}
+			var lab = i
+		}
+		for (var k = 0; k < lab; k++) {
+			result.unshift(arr[k])
+		}
+		return result
+	}
 }
