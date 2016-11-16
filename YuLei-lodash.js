@@ -1,4 +1,4 @@
-YuLei = {
+var YuLei = {
 
 	chunk: function(arr, n) {
 		var result = []
