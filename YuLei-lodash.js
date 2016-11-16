@@ -6,7 +6,7 @@ var YuLei = {
 
 		for (var i = 0; i < arr.length; i++) {
 			var m = i % n
-			temp.push(arr[i])
+			tmp.push(arr[i])
 			if (m == n - 1 || i == arr.length - 1) {
 				result.push(tmp)
 				m = 0
