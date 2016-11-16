@@ -15,9 +15,9 @@ YuLei = {
 		result.push(tmp)
 
 		return result
-	}
+	},
 
-		compact: function(arr) {
+	compact: function(arr) {
 		var result = []
 		for (var i = 0; i < arr.length; i++) {
 			if (arr[i] != false) {
@@ -25,14 +25,14 @@ YuLei = {
 			}
 		}
 		return result
-	}
+	},
 
-		concat: function(arr, value) {
+	concat: function(arr, value) {
 
-	}
+	},
 
 
-		difference: function(arr, value) {
+	difference: function(arr, value) {
 		var result = []
 		for (var i = 0; i < arr.length; i++) {
 			var temp = arr[i]
@@ -48,8 +48,10 @@ YuLei = {
 			}
 		}
 		return result
+	},
+
+
+	drop: function(arr, value) {
+
 	}
-
-
-		drop: function(arr, value)
 }
