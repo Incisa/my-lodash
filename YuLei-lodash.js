@@ -51,6 +51,11 @@ var YuLei = {
 
 
 	drop: function(arr, value) {
+		for (i = 0; i < value; i++) {
+			var result = arr.shift(0)
+		}
+		return arr
+	},
 
-	}
+
 }
