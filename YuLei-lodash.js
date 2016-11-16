@@ -1,16 +1,15 @@
 var YuLei = {
 
-	chunk: function(arr, n) {
+	chunk: function(arr, m) {
 		var result = []
-		var tmp = []
-
+		var temp = []
 		for (var i = 0; i < arr.length; i++) {
-			var m = i % n
-			tmp.push(arr[i])
-			if (m == n - 1 || i == arr.length - 1) {
-				result.push(tmp)
-				m = 0
-				tmp = []
+			var j = i % m
+			temp.push(arr[i])
+			if (j == m - 1 || i == arr.length - 1) {
+				result.push(temp)
+				j = 0
+				temp = []
 			}
 		}
 		return result
