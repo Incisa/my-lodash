@@ -297,4 +297,28 @@ var YuLei = {
 		}
 		return result
 	},
+
+
+	/**
+	 * 创建一个包含所有使用 SameValueZero 进行等值比较后筛选的唯一值数组。
+	 * arr：需要处理的数组队列，
+	 * return ：返回数组中所有数组共享元素的新数组。
+	 * 例：
+	 * _.intersection([2, 1], [2, 3]);
+	 * // => [2]
+	 */
+
+	intersection: function(arr1, arr2) {
+		var bigArr = [arr1, arr2]
+		var common = []
+		for (i = 0; i < bigArr.length - 1; i++) {
+			for (j = 0; j < arr1.length; j++) {
+				if (bigArr[i][j] == bigArr[i + 1][j]) {
+					common.push(bigArr[i][j])
+					return common
+				}
+			}
+		}
+	},
+
 }
