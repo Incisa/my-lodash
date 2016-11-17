@@ -336,8 +336,132 @@ var YuLei = {
 	 * // => ['b', 'b']
 	 */
 
-	pull: function(arr, value, value) {
+	pull: function(arr, value1, value2) {
+		for (i = arr.length - 1; i >= 0; i--) {
+			if (arr[i] == value1) {
+				arr.splice(i, 1)
+			}
+		}
+		for (i = arr.length - 1; i >= 0; i--) {
+			if (arr[i] == value2) {
+				arr.splice(i, 1)
+			}
+		}
 
+		return arr
 	},
 
+
+	/**
+	 * 这个方式类似 _.pull，除了它接受数组形式的一系列值。
+	 * 注意: 不同于 _.difference，这个方法会改变数组。
+	 * arr：需要调整的数组,
+	 * value：要移除的值,
+	 * return ：返回数组本身。
+	 * 例：
+	 * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+	 *
+	 * _.pullAll(array, ['a', 'c']);
+	 * console.log(array);
+	 * // => ['b', 'b']
+	 */
+
+	pullAll: function(arr, value) {
+		for (k = 0; k <= value.length; k++) {
+			for (i = arr.length - 1; i >= 0; i--) {
+				if (arr[i] == value[k]) {
+					arr.splice(i, 1)
+				}
+			}
+		}
+		return arr
+	},
+
+
+	/**
+	 * 根据给的 indexes 移除对应的数组元素并返回被移除的元素。
+	 * 注意: 不同于 _.at，这个方法会改变数组。
+	 * arr：需要调整的数组,
+	 * index：可以是特殊的数组队列，或者个别的单个或多个参数,
+	 * return ：返回被移除的元素数组。
+	 * 例：
+	 * var array = ['a', 'b', 'c', 'd'];
+	 * var pulled = _.pullAt(array, [1, 3]);
+	 *
+	 * console.log(array);
+	 * // => ['a', 'c']
+	 *
+	 * console.log(pulled);
+	 * // => ['b', 'd']
+	 */
+
+	pullAt: function(arr, index) {
+		var start = index[0]
+		var end = index[1]
+		var out1 = arr.splice(start, 1)
+		var tmp = ''
+		arr.splice(start, 0, tmp)
+		var out2 = arr.splice(end, 1)
+		var pulled = out1.concat(out2)
+		return pulled
+	},
+
+
+	/**
+	 * 将数组最前面的元素返回置数组尾部。
+	 * arr：需要调整的数组,
+	 * return ：返回调整后的数组。
+	 * 例：
+	 * var array = [1, 2, 3];
+	 *
+	 * _.reverse(array);
+	 * // => [3, 2, 1]
+	 *
+	 * console.log(array);
+	 * // => [3, 2, 1]
+	 */
+
+	reserve: function(arr) {
+		var result = []
+		for (i = 0; i < arr.length; i++) {
+			result.unshift(arr[i])
+		}
+		return result
+	},
+
+
+	/**
+	 * 以 separator 拆分字符串。
+	 * 注意: 这个方法基于 String#split。
+	 * str：要拆分的字符串,
+	 * separa：拆分的分隔符,
+	 * limit：限制的数量。
+	 * return：返回拆分部分的字符串的数组。
+	 * 例：
+	 * _.split('a-b-c', '-', 2);
+	 * // => ['a', 'b']
+	 */
+
+	split: function(str, separa, limit) {
+		var arr = []
+		arr.push(str)
+		var stringScarp = arr[0].split(separa)
+		var result = stringScarp.splice(0, limit)
+		return result
+	},
+
+
+	/**
+	 * 获取数组中除了第一个元素的剩余数组。
+	 * arr：要检索的数组,
+	 * return：返回数组中除了第一个元素的剩余数组。
+	 * 例：
+	 * _.tail([1, 2, 3]);
+	 * // => [2, 3]
+	 */
+
+	tail: function(arr) {
+		var result = arr.splice(1, arr.length)
+		return result
+	}
 }
