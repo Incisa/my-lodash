@@ -421,7 +421,7 @@ var YuLei = {
 	 * // => [3, 2, 1]
 	 */
 
-	reserve: function(arr) {
+	reverse: function(arr) {
 		var result = []
 		for (i = 0; i < arr.length; i++) {
 			result.unshift(arr[i])
@@ -483,5 +483,32 @@ var YuLei = {
 		return result
 	},
 
+
+	/**
+	 * 从数组的起始元素开始提取 N 个元素。
+	 * arr：要处理的数组,
+	 * value：要提取的个数，
+	 * return：返回提取的元素数组。
+	 * 例：
+	 * _.take([1, 2, 3]);
+	 * // => [1]
+	 *
+	 * _.take([1, 2, 3], 2);
+	 * / => [1, 2]
+	 *
+	 * _.take([1, 2, 3], 5);
+	 * // => [1, 2, 3]
+	 *
+	 * _.take([1, 2, 3], 0);
+	 * // => []
+	 */
+
+	take: function(arr, value) {
+		if (!value) {
+			return []
+		}
+		arr.splice(value, value + 1)
+		return arr
+	},
 
 }
