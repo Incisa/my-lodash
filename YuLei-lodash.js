@@ -94,5 +94,35 @@ var YuLei = {
 			result.unshift(arr[k])
 		}
 		return result
-	}
+	},
+
+
+	flattenDeep: function(arr) {
+
+		function flattenOnce(arr) {
+			var result = []
+			var l = arr.length
+			for (var i = 0; i <= l; i++) {
+				if (typeof arr[i] == 'object') {
+					for (var j = 0; j < arr[i].length; j++) {
+						result.push(arr[i][j])
+					}
+				}
+				if (typeof arr[i] == 'number') {
+					result.push(arr[i])
+				}
+			}
+			return result
+		}
+		var newResult = flattenOnce(arr)
+		for (var i = 0; i < newResult.length; i++) {
+			if (typeof newResult[i] == 'object') {
+				newResult = flattenOnce(newResult)
+			}
+		}
+		return newResult
+	},
+
+
+
 }
