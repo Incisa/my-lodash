@@ -321,4 +321,23 @@ var YuLei = {
 		}
 	},
 
+
+	/**
+	 * 移除所有经过 SameValueZero 等值比较为 true 的元素,
+	 * 注意: 不同于 _.without，这个方法会改变数组。
+	 * arr：需要调整的数组,
+	 * value：要移除的值,
+	 * return ：返回数组本身。
+	 * 例：
+	 * var array = ['a', 'b', 'c', 'a', 'b', 'c'];
+	 *
+	 * _.pull(array, 'a', 'c');
+	 * console.log(array);
+	 * // => ['b', 'b']
+	 */
+
+	pull: function(arr, value, value) {
+
+	},
+
 }
