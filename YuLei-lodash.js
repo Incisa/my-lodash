@@ -279,4 +279,22 @@ var YuLei = {
 		}
 		return obj
 	},
+
+
+	/**
+	 * 获取数组中除了最后一个元素之外的所有元素
+	 * arr：需要检索的数组 (Array)
+	 * return ：返回没有最后一个元素的数组
+	 * 例：
+	 * _.initial([1, 2, 3]);
+	 * // => [1, 2]
+	 */
+
+	initial: function(arr) {
+		var result = []
+		for (i = 0; i < arr.length - 1; i++) {
+			result.push(arr[i])
+		}
+		return result
+	},
 }
