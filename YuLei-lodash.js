@@ -463,5 +463,25 @@ var YuLei = {
 	tail: function(arr) {
 		var result = arr.splice(1, arr.length)
 		return result
-	}
+	},
+
+
+	/**
+	 * 获取数组中第一个元素。
+	 * arr：要检索的数组,
+	 * return：返回数组中第一个元素。
+	 * 例：
+	 * _.head([1, 2, 3]);
+	 * // => 1
+	 *
+	 * _.head([]);
+	 * // => undefined
+	 */
+
+	head: function(arr) {
+		var result = arr.splice(0, 1)
+		return result
+	},
+
+
 }
