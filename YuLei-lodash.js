@@ -633,4 +633,96 @@ var YuLei = {
 		return ret
 	},
 
+
+	/**
+	 * 将数组中的所有元素转换为由 separator 分隔的字符串。
+	 * arr：需要转换的数组，
+	 * sepra：分隔符，
+	 * return：返回连接好的字符串。
+	 * 例：
+	 * _.join(['a', 'b', 'c'], '~');
+	 * // => 'a~b~c'
+	 */
+
+	join: function(arr, sepra) {
+		var newArr = []
+		for (i = 0; i < arr.length; i++) {
+			newArr.push(arr[i])
+			if (i != arr.length - 1) {
+				newArr.push(sepra)
+			}
+		}
+		var result = newArr.join('')
+		return result
+	},
+
+
+	/**
+	 * 获取数组中的最后一个元素。
+	 * arr：要检索的数组，
+	 * return：返回数组中的最后一个元素。
+	 * 例：
+	 * _.last([1, 2, 3]);
+	 * // => 3'
+	 */
+
+	last: function(arr) {
+		var result = arr.pop()
+		return result
+	},
+
+
+	/**
+	 * 根据 value 使用 SameValueZero 等值比较返回数组中首次匹配的 index。
+	 * 如果 fromIndex 为负值，将从数组尾端索引进行匹配。
+	 * 如果将 fromIndex 设置为 true，将使用更快的二进制检索机制。
+	 * arr：要检索的数组，
+	 * value：要检索的值，
+	 * index ：需要检索的起始位置，如果为 true 将使用二进制检索方式。
+	 * return：返回匹配值的 index，否则返回 -1。
+	 * 例：
+	 * _.indexOf([1, 2, 1, 2], 2);
+	 * // => 1
+	 *
+	 * // Search from the `fromIndex`.
+	 * _.indexOf([1, 2, 1, 2], 2, 2);
+	 * // => 3
+	 */
+
+	indexOf: function(arr, value, index) {
+		if (index == undefined) {
+			index = 0
+		}
+		for (i = index; i < arr.length; i++) {
+			if (arr[i] == value) {
+				return i
+			}
+		}
+	},
+
+
+	/**
+	 * 这个方法类似 _.indexOf，除了它是从右到左遍历元素的。
+	 * arr：要检索的数组，
+	 * value：要检索的值，
+	 * index ：需要检索的起始位置。
+	 * return：返回匹配值的 index，否则返回 -1。
+	 * 例：
+	 * _.lastIndexOf([1, 2, 1, 2], 2);
+	 * // => 3
+	 *
+	 * // Search from the `fromIndex`.
+	 * _.lastIndexOf([1, 2, 1, 2], 2, 2);
+	 * // => 1
+	 */
+
+	lastIndexOf: function(arr, value, index) {
+		if (index == undefined) {
+			index = 0
+		}
+		for (i = arr.length - index; i >= 0; i--) {
+
+		}
+	}
+
 }
