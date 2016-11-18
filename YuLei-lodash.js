@@ -618,19 +618,19 @@ var YuLei = {
 	 * // => objects for [['fred'], ['barney', 'pebbles']]
 	 */
 
-	partition: function(arr, fn) {
-		var ret = [
-			[],
-			[]
-		]
-		for (var i = 0; i < arr.length; i++) {
-			if (fn(arr[i], i, arr)) {
-				ret[0].push(arr[i])
-			} else {
-				ret[1].push(arr[i])
-			}
-		}
-		return ret
-	},
+	// partition: function(arr, fn) {
+	// 	var ret = [
+	// 		[],
+	// 		[]
+	// 	]
+	// 	for (var i = 0; i < arr.length; i++) {
+	// 		if (fn(arr[i], i, arr)) {
+	// 			ret[0].push(arr[i])
+	// 		} else {
+	// 			ret[1].push(arr[i])
+	// 		}
+	// 	}
+	// 	return ret
+	// },
 
 }
