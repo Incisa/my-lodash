@@ -550,29 +550,87 @@ var YuLei = {
 
 
 	/**
-	 * 创建一个经过 iteratee 处理的集合中每一个元素的结果数组。 
-	 * iteratee 会传入 3 个参数：(value, index|key, collection)。
-	 * arr：需要遍历的集合,
+	 * 遍历集合中的元素，筛选出一个经过 predicate 检查结果为真值的数组。
+	 * predicate 会传入 3 个参数：(value, index|key, collection)。
+	 * predicate：需要遍历的集合,
 	 * fn：这个函数会处理每一个元素，
-	 * return：返回映射后的新数组。
+	 * return：返回筛选结果的新数组。
 	 * 例：
-	 * function square(n) {
-	 *     return n * n;
-	 *  }
-	 *
-	 * _.map([4, 8], square);
-	 * // => [16, 64]
-	 *
-	 * _.map({ 'a': 4, 'b': 8 }, square);
-	 * // => [16, 64] (iteration order is not guaranteed)
-	 *
 	 * var users = [
-	 *    { 'user': 'barney' },
-	 *    { 'user': 'fred' }
-	 *    ];
+	 *     { 'user': 'barney', 'age': 36, 'active': true },
+	 *     { 'user': 'fred',   'age': 40, 'active': false }
+	 *     ];
+	 *
+	 * _.filter(users, function(o) { return !o.active; });
+	 * // => objects for ['fred']
+	 *
+	 * // The `_.matches` iteratee shorthand.
+	 * _.filter(users, { 'age': 36, 'active': true });
+	 * // => objects for ['barney']
+	 *
+	 * // The `_.matchesProperty` iteratee shorthand.
+	 * _.filter(users, ['active', false]);
+	 * // => objects for ['fred']
 	 *
 	 * // The `_.property` iteratee shorthand.
-	 * _.map(users, 'user');
-	 * // => ['barney', 'fred']
+	 * _.filter(users, 'active');
+	 * // => objects for ['barney']
 	 */
+
+	function filter(collection, predicate) {
+		var result = []
+		for (var i = 0; i < collection.length; i++) {
+			if (collection[i], i, collection) {
+				result.push(collection[i])
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 创建一个拆分为两部分的数组。 
+	 * 第一部分是 predicate 检查为真值的，第二部分是 predicate 检查为假值的。 
+	 * predicate 会传入 3 个参数：(value, index|key, collection)。
+	 * arr：需要遍历的集合,
+	 * fn：这个函数会处理每一个元素，
+	 * return：返回筛选结果的新数组。
+	 * 例：
+	 * var users = [
+	 *   { 'user': 'barney',  'age': 36, 'active': false },
+	 *   { 'user': 'fred',    'age': 40, 'active': true },
+	 *   { 'user': 'pebbles', 'age': 1,  'active': false }
+	 *   ];
+	 *
+	 * _.partition(users, function(o) { return o.active; });
+	 * // => objects for [['fred'], ['barney', 'pebbles']]
+	 *
+	 * // The `_.matches` iteratee shorthand.
+	 * _.partition(users, { 'age': 1, 'active': false });
+	 * // => objects for [['pebbles'], ['barney', 'fred']]
+	 *
+	 * // The `_.matchesProperty` iteratee shorthand.
+	 * _.partition(users, ['active', false]);
+	 * // => objects for [['barney', 'pebbles'], ['fred']]
+	 *
+	 * // The `_.property` iteratee shorthand.
+	 * _.partition(users, 'active');
+	 * // => objects for [['fred'], ['barney', 'pebbles']]
+	 */
+
+	partition: function(arr, fn) {
+		var ret = [
+			[],
+			[]
+		]
+		for (var i = 0; i < arr.length; i++) {
+			if (fn(arr[i], i, arr)) {
+				ret[0].push(arr[i])
+			} else {
+				ret[1].push(arr[i])
+			}
+		}
+		return ret
+	},
+
 }
