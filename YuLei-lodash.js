@@ -764,4 +764,224 @@ var YuLei = {
 		return result
 	},
 
+
+	/**
+	 * 通过 iteratee 遍历集合中的每个元素。 每次返回的值会作为下一次 iteratee 使用。
+	 * 如果没有提供 accumulator，则集合中的第一个元素作为 accumulator。 
+	 * iteratee 会传入 4 个参数：(accumulator, value, index|key, collection)。
+	 * arr：需要遍历的集合，
+	 * fn：这个函数会处理每一个元素，
+	 * initial ：初始化的值。
+	 * return：返回累加后的值。
+	 * 例：
+	 * _.reduce([1, 2], function(sum, n) {
+	 *   return sum + n;
+	 * }, 0);
+	 * // => 3
+	 *
+	 * _.reduce({ 'a': 1, 'b': 2, 'c': 1 }, function(result, value, key) {
+	 *   (result[value] || (result[value] = [])).push(key);
+	 *   return result;
+	 * }, {});
+	 * // => { '1': ['a', 'c'], '2': ['b'] } (iteration order is not guaranteed)
+	 */
+
+	reduce: function(arr, fn, initial) {
+		var start = 0
+		if (initial == undefined) {
+			initial = arr[0]
+			start = 1
+		}
+		var result = initial
+		for (var i = initial; i < arr.length; i++) {
+			result = fn(result, arr[i])
+		}
+		return result
+	},
+
+
+	/**
+	 * 使用二进制的方式检索来决定 value 应该插入在数组中位置。
+	 * 它的 index 应该尽可能的小以保证数组的排序。
+	 * arr：要检索的数组，
+	 * value：要评估位置的值，
+	 * return：返回 value 应该在数组中插入的 index。
+	 * 例：
+	 * _.sortedIndex([30, 50], 40);
+	 * // => 1
+	 */
+
+	sortedIndex: function(arr, value) {
+		for (var i = 0; i <= arr.length; i++) {
+			if (arr[i] > value) {
+				return i
+			}
+		}
+	},
+
+
+	/**
+	 * 从数组的结束元素开始提取 N 个数组。
+	 * arr：要处理的数组,
+	 * value：要提取的个数，
+	 * return：返回提取的元素数组。
+	 * 例：
+	 * _.takeRight([1, 2, 3]);
+	 * // => [3]
+	 *
+	 * _.takeRight([1, 2, 3], 2);
+	 * // => [2, 3]
+	 *
+	 * _.takeRight([1, 2, 3], 5);
+	 * // => [1, 2, 3]
+	 *
+	 * _.takeRight([1, 2, 3], 0);
+	 * // => []
+	 */
+
+	takeRight: function(arr, value) {
+		if (value == undefined) {
+			value = 1
+		}
+		var newArr = []
+		for (var i = arr.length - 1; i >= arr.length - value; i--) {
+			newArr.unshift(arr[i])
+			if (i <= 0) {
+				break
+			}
+		}
+		return newArr
+	},
+
+
+	/**
+	 * 创建顺序排列的唯一值组成的数组。所有值经过 SameValueZero 等值比较。
+	 * arguments：要处理的数组,
+	 * return：返回处理好的数组。
+	 * 例：
+	 * _.union([2], [1, 2]);
+	 * // => [2, 1]
+	 */
+
+	union: function() {
+		var newArr = []
+		for (var i = 0; i < arguments.length; i++) {
+			for (var j = 0; j < arguments[i].length; j++) {
+				newArr.push(arguments[i][0])
+				break
+			}
+		}
+		return newArr
+	},
+
+
+	/**
+	 * 创建一个不重复的数组副本。使用了 SameValueZero 等值比较。
+	 * 只有首次出现的元素才会被保留。
+	 * arr：要处理的数组,
+	 * return：返回处理好的数组。
+	 * 例：
+	 * _.uniq([2, 1, 2]);
+	 * // => [2, 1]
+	 */
+
+	uniq: function(arr) {
+		var result = []
+		var count
+		result.push(arr[0])
+		for (var i = 0; i < arr.length; i++) {
+			count = 0
+			for (var j = 0; j < result.length; j++) {
+				if (arr[i] != result[j]) {
+					count++
+				}
+			}
+			if (count == result.length) {
+				result.push(arr[i])
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 这个方法类似 _.zip，除了它接收一个打包后的数组并且还原为打包前的状态。
+	 * arr：需要解包的已打包数组,
+	 * return：返回一个解包后的数组。
+	 * 例：
+	 * var zipped = _.zip(['fred', 'barney'], [30, 40], [true, false]);
+	 * // => [['fred', 30, true], ['barney', 40, false]]
+	 *
+	 * _.unzip(zipped);
+	 * // => [['fred', 'barney'], [30, 40], [true, false]]
+	 */
+
+	unzip: function(arr) {
+		var result = []
+		for (var i = 0; i <= arr[0].length; i++) {
+			result[i] = []
+			for (var j = 0; j < arr.length; j++) {
+				result[i][j] = arr[j][i]
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 创建一个打包所有元素后的数组。
+	 * 第一个元素包含所有提供数组的第一个元素，第二个包含所有提供数组的第二个元素，以此类推。
+	 * arr：要处理的数组队列,
+	 * return：返回一个打包后的数组。
+	 * 例：
+	 * _.zip(['fred', 'barney'], [30, 40], [true, false]);
+	 * // => [['fred', 30, true], ['barney', 40, false]]
+	 */
+
+
+	zip: function(arr) {
+		var result = []
+		for (var i = 0; i <= arr[0].length; i++) {
+			result[i] = []
+			for (var j = 0; j < arr.length; j++) {
+				result[i][j] = arr[j][i]
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 创建一个移除了所有提供的 values 的数组。使用了 SameValueZero 等值比较。
+	 * arr：要处理的数组队列,
+	 * value：要排除的值。
+	 * return：返回一个打包后的数组。
+	 * 例：
+	 * _.without([1, 2, 1, 3], 1, 2);
+	 * // => [3]
+	 */
+
+	without: function(arr, value1, value2) {
+		var result = []
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] != value1 && arr[i] != value2) {
+				result.push(arr[i])
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 创建一个包含了所有唯一值的数组。使用了 symmetric difference 等值比较。
+	 * arr：要处理的数组，
+	 * value：要排除的值。
+	 * return：包含了所有唯一值的新数组。
+	 * 例：
+	 * _.xor([2, 1], [2, 3]);
+	 * // => [1, 3]
+	 */
+
+
+
 }
