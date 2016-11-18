@@ -646,7 +646,7 @@ var YuLei = {
 
 	join: function(arr, sepra) {
 		var newArr = []
-		for (i = 0; i < arr.length; i++) {
+		for (var i = 0; i < arr.length; i++) {
 			newArr.push(arr[i])
 			if (i != arr.length - 1) {
 				newArr.push(sepra)
@@ -693,7 +693,7 @@ var YuLei = {
 		if (index == undefined) {
 			index = 0
 		}
-		for (i = index; i < arr.length; i++) {
+		for (var i = index; i < arr.length; i++) {
 			if (arr[i] == value) {
 				return i
 			}
@@ -720,9 +720,42 @@ var YuLei = {
 		if (index == undefined) {
 			index = 0
 		}
-		for (i = arr.length - index; i >= 0; i--) {
-
+		for (var i = arr.length - index; i >= 0; i--) {
+			if (arr[i] == value) {
+				return i
+			}
 		}
-	}
+	},
+
+
+	/**
+	 * 检索元素的位置，并输出该位次下的元素。
+	 * 如果 n 为负数，那么则从结尾处反向检索
+	 * arr：要检索的数组，
+	 * value：要检索的值，
+	 * return：返回匹配的元素。
+	 * 例：
+	 * var array = ['a', 'b', 'c', 'd'];
+	 *
+	 * _.nth(array, 1);
+	 * // => 'b'
+	 *
+	 * _.nth(array, -2);
+	 * // => 'c';
+	 */
+
+	nth: function(arr, value) {
+		var result
+		if (value >= 0) {
+			result = arr[value]
+			return result
+		}
+		var newArr = []
+		for (var i = 0; i < arr.length; i++) {
+			newArr.unshift(arr[i])
+		}
+		result = newArr[-value - 1]
+		return result
+	},
 
 }
