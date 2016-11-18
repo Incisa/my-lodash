@@ -577,7 +577,7 @@ var YuLei = {
 	 * // => objects for ['barney']
 	 */
 
-	function filter(collection, predicate) {
+	filter: function(collection, predicate) {
 		var result = []
 		for (var i = 0; i < collection.length; i++) {
 			if (collection[i], i, collection) {
