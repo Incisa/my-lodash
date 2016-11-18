@@ -982,6 +982,48 @@ var YuLei = {
 	 * // => [1, 3]
 	 */
 
+	xor: function() {
+		var bigArr = []
+		for (var i = 0; i < arguments.length; i++) {
+			bigArr = bigArr.concat(arguments[i])
+		}
+		var result = []
+		var count
+		var temp
+		for (var i = 0; i < bigArr.length; i++) {
+			temp = bigArr[i]
+			count = 0
+			for (var j = 0; j < bigArr.length; j++) {
+				if (temp == bigArr[j]) {
+					count++
+				}
+			}
+			if (count == 1) {
+				result.push(bigArr[i])
+			}
+		}
+		return result
+	},
 
+
+	/**
+	 * 转换字符串为 驼峰写法。
+	 * str：要转换的字符串。
+	 * return：返回驼峰写法的字符串。
+	 * 例：
+	 * _.camelCase('Foo Bar');
+	 * // => 'fooBar'
+	 *
+	 * _.camelCase('--foo-bar');
+	 * // => 'fooBar'
+	 *
+	 * _.camelCase('__foo_bar__');
+	 * // => 'fooBar'
+	 */
+
+
+	camelCase: function(str) {
+
+	}
 
 }
