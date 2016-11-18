@@ -580,7 +580,7 @@ var YuLei = {
 	filter: function(collection, fn) {
 		var result = []
 		for (var i = 0; i < collection.length; i++) {
-			if (collection[i], i, collection) {
+			if (fn(collection[i], i, collection)) {
 				result.push(collection[i])
 			}
 		}
