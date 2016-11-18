@@ -479,7 +479,8 @@ var YuLei = {
 	 */
 
 	head: function(arr) {
-		var result = arr.splice(0, 1)
+		var arrScarp = arr.splice(0, 1)
+		var result = arrScarp[0]
 		return result
 	},
 
@@ -511,4 +512,67 @@ var YuLei = {
 		return arr
 	},
 
+
+	/**
+	 * 创建一个经过 iteratee 处理的集合中每一个元素的结果数组。 
+	 * iteratee 会传入 3 个参数：(value, index|key, collection)。
+	 * arr：需要遍历的集合,
+	 * fn：这个函数会处理每一个元素，
+	 * return：返回映射后的新数组。
+	 * 例：
+	 * function square(n) {
+	 *     return n * n;
+	 *  }
+	 *
+	 * _.map([4, 8], square);
+	 * // => [16, 64]
+	 *
+	 * _.map({ 'a': 4, 'b': 8 }, square);
+	 * // => [16, 64] (iteration order is not guaranteed)
+	 *
+	 * var users = [
+	 *    { 'user': 'barney' },
+	 *    { 'user': 'fred' }
+	 *    ];
+	 *
+	 * // The `_.property` iteratee shorthand.
+	 * _.map(users, 'user');
+	 * // => ['barney', 'fred']
+	 */
+
+	map: function(arr, fn) {
+		var result = []
+		for (var i = 0; i < arr.length; i++) {
+			result.push(fn(arr[i], i, arr))
+		}
+		return result
+	},
+
+
+	/**
+	 * 创建一个经过 iteratee 处理的集合中每一个元素的结果数组。 
+	 * iteratee 会传入 3 个参数：(value, index|key, collection)。
+	 * arr：需要遍历的集合,
+	 * fn：这个函数会处理每一个元素，
+	 * return：返回映射后的新数组。
+	 * 例：
+	 * function square(n) {
+	 *     return n * n;
+	 *  }
+	 *
+	 * _.map([4, 8], square);
+	 * // => [16, 64]
+	 *
+	 * _.map({ 'a': 4, 'b': 8 }, square);
+	 * // => [16, 64] (iteration order is not guaranteed)
+	 *
+	 * var users = [
+	 *    { 'user': 'barney' },
+	 *    { 'user': 'fred' }
+	 *    ];
+	 *
+	 * // The `_.property` iteratee shorthand.
+	 * _.map(users, 'user');
+	 * // => ['barney', 'fred']
+	 */
 }
