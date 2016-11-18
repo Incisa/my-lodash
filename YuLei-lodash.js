@@ -128,6 +128,9 @@ var YuLei = {
 	 */
 
 	drop: function(arr, value) {
+		if (value == undefined) {
+			value = 1
+		}
 		for (i = 0; i < value; i++) {
 			var result = arr.shift(0)
 		}
@@ -155,6 +158,9 @@ var YuLei = {
 	 */
 
 	dropRight: function(arr, value) {
+		if (value == undefined) {
+			value = 1
+		}
 		for (i = 0; i < value; i++) {
 			var result = arr.pop(0)
 		}
@@ -185,10 +191,10 @@ var YuLei = {
 	 */
 
 	fill: function(arr, value, start, end) {
-		if (!start) {
+		if (start == undefined) {
 			start = 0
 		}
-		if (!end) {
+		if (end == undefined) {
 			end = arr.length
 		}
 		arr.splice(start, end - start)
