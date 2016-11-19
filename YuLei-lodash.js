@@ -1056,4 +1056,30 @@ var YuLei = {
 		return result
 	},
 
+
+	/**
+	 * 转换字符串首字母为大写，剩下为小写。
+	 * str：要大写开头的字符串。
+	 * return：返回大写开头的字符串。
+	 * 例：
+	 * _.capitalize('FRED');
+	 * // => 'Fred'
+	 */
+
+	capitalize: function(str) {
+		var strUpper = str.toUpperCase()
+		var result = strUpper.substring(0, 1) + strUpper.substring(1).toLowerCase()
+		return result
+	},
+
+
+	/**
+	 * 转换字符串首字母为大写，剩下为小写。
+	 * str：要大写开头的字符串。
+	 * return：返回大写开头的字符串。
+	 * 例：
+	 * _.capitalize('FRED');
+	 * // => 'Fred'
+	 */
+
 }
