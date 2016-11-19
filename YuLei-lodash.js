@@ -1074,12 +1074,44 @@ var YuLei = {
 
 
 	/**
-	 * 转换字符串首字母为大写，剩下为小写。
-	 * str：要大写开头的字符串。
-	 * return：返回大写开头的字符串。
+	 * 转换 latin-1 supplementary letters#Character_table) 为基本拉丁字母，并删除变音符。
+	 * str：要处理的字符串。
+	 * return：返回处理后的字符串。
 	 * 例：
-	 * _.capitalize('FRED');
-	 * // => 'Fred'
+	 * _.deburr('déjà vu');
+	 * // => 'deja vu'
 	 */
 
+	deburr: function(str) {
+
+	},
+
+
+	/**
+	 * 检查给定的字符是否是字符串的结尾。
+	 * str：要检索的字符串。
+	 * target：要检索字符，
+	 * index：检索的位置。
+	 * return：如果是结尾返回 true，否则返回 false。
+	 * 例：
+	 * _.endsWith('abc', 'c');
+	 * // => true
+	 *
+	 * _.endsWith('abc', 'b');
+	 * // => false
+	 *
+	 * _.endsWith('abc', 'b', 2);
+	 * // => true
+	 */
+
+	endsWith: function(str, target, index) {
+		if (index == undefined) {
+			index = 1
+		}
+		if (str[str.length - index] == target) {
+			return true
+		} else {
+			return false
+		}
+	},
 }
