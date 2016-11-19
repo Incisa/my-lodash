@@ -1023,7 +1023,37 @@ var YuLei = {
 
 
 	camelCase: function(str) {
-
-	}
+		//探测分隔符
+		var strLower = str.toLowerCase()
+		var count
+		var separator
+		for (var i = 0; i < strLower.length; i++) {
+			count = 0
+			for (var j = 'a'.charCodeAt(0); j <= 'z'.charCodeAt(0); j++) {
+				if (strLower[i] == String.fromCharCode(j)) {
+					count++
+				}
+			}
+			if (count == 0) {
+				separator = strLower[i]
+				break
+			}
+		}
+		//分隔单词，去分隔符，首字母大写
+		var strScarp = strLower.split(separator)
+		var result = ""
+		count = 0
+		for (var i = 0; i < strScarp.length; i++) {
+			if (strScarp[i] != "") {
+				if (count == 0) {
+					result = result + strScarp[i]
+					count++
+				} else {
+					result = result + strScarp[i].substring(0, 1).toUpperCase() + strScarp[i].substring(1)
+				}
+			}
+		}
+		return result
+	},
 
 }
