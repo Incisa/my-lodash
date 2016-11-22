@@ -1114,4 +1114,195 @@ var YuLei = {
 			return false
 		}
 	},
+
+
+	/**
+	 * 创建一个键值倒置的对象。 
+	 * 如果 object 有重复的值，后面的值会覆盖前面的值。 
+	 * 如果 multiVal 为 true，重复的值则组成数组。
+	 * obj：要倒置的对象。
+	 * [multiVal]：每个 key 允许多个值，
+	 * return：返回新的倒置的对象
+	 * 例：
+	 * var object = { 'a': 1, 'b': 2, 'c': 1 };
+	 *
+	 * _.invert(object);
+	 * // => { '1': 'c', '2': 'b' }
+	 */
+
+	invert: function(obj) {
+		var newObj = {}
+		for (var key in obj) {
+			newObj[obj[key]] = key
+		}
+		return newObj
+	},
+
+
+	/**
+	 * 创建 object 自身可枚举属性名为一个数组。
+	 * 注意: 非对象的值会被强制转换为对象，查看 ES spec 了解详情
+	 * obj：要检索的对象。
+	 * return：返回包含属性名的数组。
+	 * 例：
+	 * function Foo() {
+	 * this.a = 1;
+	 * this.b = 2;
+	 * }
+	 *
+	 * Foo.prototype.c = 3;
+	 *
+	 * _.keys(new Foo);
+	 * // => ['a', 'b'] (iteration order is not guaranteed)
+	 *
+	 * _.keys('hi');
+	 * // => ['0', '1']
+	 */
+
+	keys: function(obj) {
+		var resultArr = []
+		for (var key in obj) {
+			resultArr.push(key)
+		}
+		return resultArr
+	},
+
+
+	/**
+	 * 使用 iteratee 遍历对象的自身和继承的可枚举属性。
+	 * iteratee 会传入 3 个参数：(value, key, object)。
+	 * 如果返回 false，iteratee 会提前退出遍历。
+	 * obj：要遍历的对象。
+	 * return：返回对象。
+	 * 例：
+	 *
+	 * function Foo() {
+	 * this.a = 1;
+	 * this.b = 2;
+	 * }
+	 *
+	 * Foo.prototype.c = 3;
+	 *
+	 * _.forIn(new Foo, function(value, key) {
+	 * console.log(key);
+	 * });
+	 * // => Logs 'a', 'b', then 'c' (iteration order is not guaranteed).
+	 */
+
+	forIn: function(obj, fn) {
+
+	},
+
+	/**
+	 * 返回集合的长度或对象中可枚举属性的个数。
+	 * collection：待处理的集合。
+	 * return：返回集合的大小。
+	 * 例：
+	 *
+	 * function Foo() {
+	 * this.a = 1;
+	 * this.b = 2;
+	 * }
+	 *
+	 * _.size([1, 2, 3]);
+	 * // => 3
+	 *
+	 * _.size({ 'a': 1, 'b': 2 });
+	 * // => 2
+	 *
+	 * _.size('pebbles');
+	 * // => 7
+	 */
+
+	size: function(collection) {
+		if (Array.isArray(collection)) {
+			return collection.length
+		}
+		var l = 0
+		for (var key in collection) {
+			l++
+		}
+		return l
+	},
+
+
+	/**
+	 * 创建 object 自身可枚举属性的值为数组
+	 * 注意: 非对象的值会强制转换为对象
+	 * obj：要检索的对象。
+	 * return：返回包含属性名的数组。
+	 * 例：
+	 * function Foo() {
+	 *   this.a = 1;
+	 *   this.b = 2;
+	 * }
+	 *
+	 * Foo.prototype.c = 3;
+	 *
+	 * _.values(new Foo);
+	 * // => [1, 2] (iteration order is not guaranteed)
+	 *
+	 * _.values('hi');
+	 * // => ['h', 'i']
+	 */
+
+	value: function(obj) {
+		var result = []
+		for (var key in obj) {
+			result.push(obj[key])
+		}
+		return result
+	},
+
+
+	/**
+	 * 通过 predicate 检查集合中的元素是否都返回真值。
+	 * 只要 predicate 返回一次假值，遍历就停止，并返回 false。
+	 * predicate 会传入 3 个参数：(value, index|key, collection)
+	 * [predicate=_.identity]：这个函数会处理每一个元素。
+	 * return：返回 true，如果所有元素经 predicate 检查都为真值，否则返回 false。
+	 * 例：
+	 * _.every([true, 1, null, 'yes'], Boolean);
+	 * // => false
+	 *
+	 * var users = [
+	 *   { 'user': 'barney', 'age': 36, 'active': false },
+	 *   { 'user': 'fred',   'age': 40, 'active': false }
+	 * ];
+	 *
+	 * // The `_.matches` iteratee shorthand.
+	 * _.every(users, { 'user': 'barney', 'active': false });
+	 * // => false
+	 *
+	 * // The `_.matchesProperty` iteratee shorthand.
+	 * _.every(users, ['active', false]);
+	 * // => true
+	 *
+	 * // The `_.property` iteratee shorthand.
+	 * _.every(users, 'active');
+	 * // => false
+	 */
+
+	every: function(collection, predicate) {
+		if (!predicate) {
+			predicate = function(temp) {
+				return temp
+			}
+		}
+		if (Array.isArray(collection)) {
+			for (var i = 0; i < collection.length; i++) {
+				if (!predicate(collection[i], i, collection)) {
+					return false
+				}
+			}
+			return true
+		} else {
+			for (var key in collection) {
+				if (!predicate(collection[key], key, collection)) {
+					return false
+				}
+			}
+			return true
+		}
+	},
 }
