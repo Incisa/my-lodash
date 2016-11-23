@@ -1305,4 +1305,42 @@ var YuLei = {
 			return true
 		}
 	},
+
+
+	after: function(n, fn) {
+		var runningTimes = 0
+		return function(arg) {
+			runningTimes++
+			if (runningTimes >= n) {
+				return fn(arg)
+			}
+		}
+	},
+
+
+	before: function(n, fn) {
+		var runningTimes = 0
+		return function(arg) {
+			var lastReturnValue
+			runningTimes++
+			if (runningTimes <= n) {
+				return (lastReturnValue = fn(arg))
+			} else {
+				return lastReturnValue
+			}
+		}
+	},
+
+
+	matches: function(source) {
+		return function(object) {
+			for (key in object) {
+				if (object[key] == source[object]) {
+					return true
+				} else {
+					return false
+				}
+			}
+		}
+	},
 }
