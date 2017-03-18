@@ -4,7 +4,6 @@
  * 参数是干嘛的
  * 返回什么
  * 例子
- * 如非刻意，不要更改函数的实际传入的参数值（注：已中枪，抽空要改）
  */
 
 
@@ -1307,6 +1306,15 @@ var YuLei = {
 	},
 
 
+	/**
+	 * 反向版_.before.这个方法创建一个新函数，当调用N次或者多次之后将触发		func方法。
+	 * 参数：
+	 * 1. n (number) 方法应该在调用多少次之后执行。
+	 * 2. func (Function) 指定的触发方法。
+	 * 返回值：
+	 * 返回限定的函数。
+	 */
+
 	after: function(n, fn) {
 		var runningTimes = 0
 		return function(arg) {
@@ -1316,6 +1324,16 @@ var YuLei = {
 			}
 		}
 	},
+
+
+	/**
+	 * 创建一个调用func的函数。调用次数不超过N次。之后再调用这个函数，将返回最后一个调用的结果。
+	 * 参数：
+	 * 1. n (number) 超过多少次不再调用func。
+	 * 2. func (Function) 指定的触发方法。
+	 * 返回值：
+	 * 返回限定的函数。
+	 */
 
 
 	before: function(n, fn) {
@@ -1332,6 +1350,14 @@ var YuLei = {
 	},
 
 
+	/**
+	 * 创建一个深比较的方法来比较给定的对象和source对象。如果给定的对象拥有相同的属性值返回true，否则返回false。
+	 * 参数：
+	 * 1. source (Object) 要匹配的原对象。
+	 * 返回值：
+	 * 返回新的函数。
+	 */
+
 	matches: function(source) {
 		return function(object) {
 			for (key in object) {
@@ -1339,6 +1365,111 @@ var YuLei = {
 					return true
 				} else {
 					return false
+				}
+			}
+		}
+	},
+
+
+	/**
+	 * 这个方法类似_.difference，除了它接受一个iteratee调用每一个数组和值。iteratee会传入一个参数：(value)。
+	 * 参数：
+	 * 1. array (Array) 需要处理的数组。
+	 * 2. [values](...Array) 用来对比差异的数组。
+	 * 3. [iteratee= _.identity] (Function|object|string)这个函数会处理每一个元素。
+	 * 返回值：
+	 * 返回一个差异化的新数组。
+	 */
+
+	differenceBy: function(arr, value, identity) {
+		if (typeof(identity) == 'function') {
+			var newArr = arr.map(identity)
+			var compare = value.map(identity)
+			for (i = 0; i < arr.length; i++) {
+				for (j = 0; j < value.length; j++) {
+					if (newArr[i] === compare[i]) {
+						arr.splice(i - 1, 1)
+					}
+				}
+			}
+			return arr
+		}
+		var section
+		var result
+		if (typeof identity == 'string') {
+			for (var i = 0; i < arr.length; i++) {
+				section = true
+				for (var j = 0; j < value.length; j++) {
+					if (arr[i][identity] == value[j][identity]) {
+						section = false
+					}
+				}
+				if (section) {
+					result.push(arr[i])
+				}
+			}
+		}
+		return result
+	},
+
+
+	/**
+	 * 这个方法类似_.difference，除了它接受一个comparator调用每一个数组元素的值。comparator会传入2个参数：(arrVal, othVal)。
+	 * 参数：
+	 * 1. array (Array) 需要处理的数组。
+	 * 2. [values](...Array) 用来对比差异的数组。
+	 * 3. [comparator] (Function)这个函数会处理每一个元素。
+	 * 返回值：
+	 * 返回一个差异化的新数组。
+	 */
+
+	differenceWith: function(arr, value, fn) {
+		var newArr = arr.map(fn)
+		var compare = value.map(fn)
+		for (i = 0; i < arr.length; i++) {
+			for (j = 0; j < value.length; j++) {
+				if (newArr[i] === compare[i]) {
+					arr.splice(i - 1, 1)
+				}
+			}
+		}
+		return arr
+	},
+
+
+	/**
+	 * 从右边开始裁剪数组，起点从predicate返回假值开始。predicate会传入3个参数：(value,index,array)。
+	 * 参数：
+	 * 1. array (Array) 需要处理的数组。
+	 * 2. [predicate=_.identity]	(Function|Object|string) 这个函数会在每一次迭代调用。
+	 * 返回值：
+	 * 返回裁剪后的数组。
+	 */
+
+	dropRightWhile: function(arr, fn) {
+
+	},
+
+
+	/**
+	 * This method is like _.find except that it returns the index of the first element predicate returns truthy for instead of the element itself.
+	 * Arguments: 
+	 * array (Array): The array to inspect.
+	 * [predicate=_.identity] (Function): The function invoked per iteration.
+	 * [fromIndex=0] (number): The index to search from.
+	 * Returns: 
+	 * (number): Returns the index of the found element, else -1.
+	 */
+
+
+	findIndex: function(arr, predicate, index) {
+		if (index === undefind) {
+			index = 0
+		}
+		if (typeof(predicate) == 'function') {
+			for (index = 0; index < arr.length; index++) {
+				if (arr[index] == predicate()) {
+					return index
 				}
 			}
 		}
